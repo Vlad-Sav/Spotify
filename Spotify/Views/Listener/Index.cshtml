@@ -1,0 +1,51 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    @model AppUser
+
+
+    <hr />
+    <div class="row">
+
+        <div class="col-3" style="border-right: thick solid #0000ff">
+            <h3>@Model.UserName</h3>
+
+            <div style="font-size:18px; margin-top:20px">@Html.ActionLink("Playlists", "Index", "Playlist")</div>
+            <div style="font-size:18px; margin-top:10px">@Html.ActionLink("Recently Added", "RecentlyAdded", "Song")</div>
+            <div style="font-size:18px; margin-top:10px">@Html.ActionLink("Search", "Index", "Search")</div>
+        </div>
+
+        <div class="col-9 w-100">
+            <h3 class=" text-secondary">All your songs:</h3>
+            @foreach (var i in ViewBag.Songs)
+            {
+                <div class="d-flex align-items-center justify-content-between bg-gray ">
+                    <div class="d-flex align-items-center justify-content-between w-100">
+                        <span class="fw-bold ">@i.Artists - @i.SongName</span>
+                        <audio controls class="align-self-end">
+                            <source src="@i.Path" type="audio/mpeg">
+                        </audio>
+
+                    </div>
+                    <div class="d-flex align-items-center justify-content-between ">
+                        @Html.ActionLink("  Delete", "DeleteFromGeneralPlaylisy", "Playlist", new { id = i.SongId })
+                    </div>
+                </div>
+
+
+            }
+        </div>
+    </div>
+
+    <div class=" row my-3">
+
+
+    </div>
+    <style>
+        .bg-gray {
+            background-color: rgb(241, 243, 244);
+            padding: 4px;
+        }
+    </style>
+}

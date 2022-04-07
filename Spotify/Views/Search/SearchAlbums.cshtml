@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "SearchAlbums";
+}
+
+<div class="col-11 w-100">
+
+    <h3 class=" text-secondary">Albums:</h3>
+    @foreach (var i in ViewBag.Albums)
+    {
+        <div class="d-flex align-items-center justify-content-between bg-gray ">
+            <div class="d-flex align-items-center justify-content-between w-100">
+                <span class="h4 fw-bold ">@i.ArtistName - @i.AlbumName</span>
+
+                <div class=" d-flex align-items-center justify-content-between ">
+                    @Html.ActionLink("Open", "AlbumsSongs", new { albumId = i.AlbumId })
+
+                </div>
+            </div>
+
+        </div>
+
+
+    }
+</div>

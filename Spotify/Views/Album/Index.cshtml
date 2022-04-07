@@ -1,0 +1,34 @@
+﻿@model IEnumerable<Spotify.Models.Albums>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Your albums</h1>
+
+<p>
+    <a asp-action="Create">Create New Album</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.AlbumName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AlbumName)
+            </td>
+            <td>
+                @Html.ActionLink("Open", "Edit", new {  id=item.Id  }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

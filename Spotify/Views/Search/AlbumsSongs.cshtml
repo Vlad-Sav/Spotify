@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewData["Title"] = "AlbumsSongs";
+}
+
+
+<div class="col-11 w-100">
+
+    <h3 class=" text-secondary">Songs in Album:</h3>
+    @foreach (var i in ViewBag.Songs)
+    {
+        <div class="d-flex align-items-center justify-content-between bg-gray ">
+            <div class="d-flex align-items-center justify-content-between w-100">
+                <span class="fw-bold ">@i.Artists - @i.SongName</span>
+
+                <div class="d-flex align-items-center justify-content-between ">
+                 
+                    @if (!i.IsAdded)
+                    {
+                        @Html.ActionLink("Add To Your Songs", "AddToGeneralPlaylistFromSearchAlbums", new { songId = i.SongId, albumId = i.AlbumId})
+                    }
+                    
+
+                    <audio controls class="align-self-end">
+                        <source src="@i.Path" type="audio/mpeg">
+                    </audio>
+
+                </div>
+            </div>
+
+        </div>
+
+
+    }
+</div>
